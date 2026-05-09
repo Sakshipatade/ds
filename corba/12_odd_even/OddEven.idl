@@ -1,0 +1,5 @@
+module OddEvenApp {
+    interface OddEven {
+        string check(in long n);
+    };
+};

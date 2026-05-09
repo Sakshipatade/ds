@@ -1,0 +1,8 @@
+module StringApp {
+    interface StringOps {
+        long length(in string s);
+        string concat(in string a, in string b);
+        string reverse(in string s);
+        string toUpper(in string s);
+    };
+};
