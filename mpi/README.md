@@ -23,6 +23,8 @@ Add GCC to PATH :Add this folder:->  C:\msys64\ucrt64\bin ->to Environment Varia
 now check gcc is installed or not: gcc --version
 
 
+```
 cd /c/Users/91911/eclipse-workspace/mpi -> run this in MSY terminal
 gcc sum_array.c -o sum_array.exe -I"/c/Program Files (x86)/Microsoft SDKs/MPI/Include" -L"/c/Program Files (x86)/Microsoft SDKs/MPI/Lib/x64" -lmsmpi
 "/c/Program Files/Microsoft MPI/Bin/mpiexec.exe" -n 4 ./sum_array.exe
+```
