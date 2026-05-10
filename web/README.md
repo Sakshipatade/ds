@@ -14,6 +14,27 @@ The "service" runs as a stand-alone HTTP server on `http://localhost:8080`. The 
 
 ---
 
+## Prerequisites – Install Java JDK
+
+Uses only the JDK's built-in HTTP libraries (`com.sun.net.httpserver.HttpServer`, `java.net.HttpURLConnection`) – **no Tomcat, no Maven, no external libraries**. Requires JDK 11 or higher.
+
+```bash
+sudo apt update
+sudo apt install -y default-jdk
+```
+Verify:
+```bash
+java -version       # 11 or higher
+javac -version
+```
+
+`curl` is used in the optional browser/curl test below. It is normally pre-installed; if not:
+```bash
+sudo apt install -y curl
+```
+
+---
+
 ## How to Run
 
 You need **two terminals** open in the `web` folder.

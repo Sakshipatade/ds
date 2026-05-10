@@ -24,9 +24,19 @@ Each folder contains 3 files:
 
 ---
 
-## Prerequisites
+## Prerequisites – Install Java JDK
 
-- Java JDK 8 or higher installed (`java -version` and `javac -version` should both work).
+Java RMI ships inside the standard JDK – no extra libraries to install. Any JDK 8 or higher works.
+
+```bash
+sudo apt update
+sudo apt install -y default-jdk
+```
+Verify:
+```bash
+java -version
+javac -version
+```
 
 ---
 

@@ -15,6 +15,20 @@ In this demo, clock times are entered manually (in minutes) so you can clearly s
 - `BerkeleyServer.java` – Master (collects times, computes average, sends offsets)
 - `BerkeleyClient.java` – Slave (sends time to master, applies received offset)
 
+## Prerequisites – Install Java JDK
+
+Pure Java with `java.net.Socket` / `ServerSocket` (TCP) – no third-party libraries. Any JDK 8 or higher works.
+
+```bash
+sudo apt update
+sudo apt install -y default-jdk
+```
+Verify:
+```bash
+java -version
+javac -version
+```
+
 ## How to Run
 
 You will need **1 master terminal + N slave terminals** (e.g., 3 slaves = 4 terminals total).

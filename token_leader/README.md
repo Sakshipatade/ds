@@ -10,6 +10,20 @@ Three independent Java programs in this folder:
 
 Each one runs as a single Java program (no separate server/client) and prints step-by-step output of the algorithm.
 
+## Prerequisites – Install Java JDK
+
+Pure Java – uses only `java.util.Scanner`. No external libraries. Any JDK 8 or higher works.
+
+```bash
+sudo apt update
+sudo apt install -y default-jdk
+```
+Verify:
+```bash
+java -version
+javac -version
+```
+
 ## How to Run
 
 ### Step 1 – Compile (any program)

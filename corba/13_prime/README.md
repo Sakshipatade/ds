@@ -2,7 +2,25 @@
 
 Distributed application using CORBA to check whether a given number is prime.
 
-> **JDK 8 required.** CORBA was removed from JDK 11+. See `corba/README.md` for install instructions.
+## Prerequisites – Install JDK 8
+
+CORBA tooling (`idlj`, `orbd`) and the `org.omg.CORBA.*` / `org.omg.CosNaming.*` packages were **removed in JDK 11+**, so JDK 8 is mandatory.
+
+```bash
+sudo apt update
+sudo apt install -y openjdk-8-jdk
+```
+If multiple JDKs are installed, switch the active one to JDK 8:
+```bash
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
+```
+Verify:
+```bash
+java -version    # must show 1.8.x
+javac -version   # must show 1.8.x
+which idlj orbd
+```
 
 ## Files
 - `Prime.idl` – IDL interface definition

@@ -7,6 +7,16 @@ Multi-threaded RMI client/server to check whether two given strings are equal.
 - `EqualServer.java` – Server implementation
 - `EqualClient.java` – Multi-threaded client
 
+## Prerequisites – Install Java JDK
+
+Java RMI is part of the standard JDK – no extra packages needed. Any JDK 8+ works.
+
+```bash
+sudo apt update
+sudo apt install -y default-jdk
+```
+Verify with `java -version` and `javac -version`.
+
 ## How to Run
 
 Open **two terminals** and `cd` into this folder.
