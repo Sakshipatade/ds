@@ -1,21 +1,19 @@
 # Practical 4 – Addition of Two Numbers (RMI)
 
-Multi-threaded RMI client/server to add two given numbers.
+Simple RMI client/server to add two given numbers.
 
 ## Files
 - `AddInterface.java` – Remote interface
 - `AddServer.java` – Server implementation
-- `AddClient.java` – Multi-threaded client
+- `AddClient.java` – Client
 
-## Prerequisites – Install Java JDK
-
-Java RMI is part of the standard JDK – no extra packages needed. Any JDK 8+ works.
+## Prerequisites – Install JDK 8 (Java 1.8)
 
 ```bash
 sudo apt update
-sudo apt install -y default-jdk
+sudo apt install -y openjdk-8-jdk
 ```
-Verify with `java -version` and `javac -version`.
+Verify with `java -version` and `javac -version` (should show 1.8.x).
 
 ## How to Run
 
@@ -36,16 +34,13 @@ Wait for: `Add Server is ready...`
 ```bash
 java AddClient
 ```
-Enter 3 pairs of numbers (`a b`) on separate prompts.
+Enter two numbers when prompted.
 
 ## Sample Output
 ```
-Enter pair 1 (a b): 10 20
-Enter pair 2 (a b): 5 7
-Enter pair 3 (a b): 100 50
-100.0 + 50.0 = 150.0
+Enter first number: 10
+Enter second number: 20
 10.0 + 20.0 = 30.0
-5.0 + 7.0 = 12.0
 ```
 
 Stop the server with `Ctrl + C`.

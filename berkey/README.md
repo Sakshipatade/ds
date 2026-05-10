@@ -15,18 +15,18 @@ In this demo, clock times are entered manually (in minutes) so you can clearly s
 - `BerkeleyServer.java` – Master (collects times, computes average, sends offsets)
 - `BerkeleyClient.java` – Slave (sends time to master, applies received offset)
 
-## Prerequisites – Install Java JDK
+## Prerequisites – Install JDK 8 (Java 1.8)
 
-Pure Java with `java.net.Socket` / `ServerSocket` (TCP) – no third-party libraries. Any JDK 8 or higher works.
+Pure Java with `java.net.Socket` / `ServerSocket` (TCP) – no third-party libraries.
 
 ```bash
 sudo apt update
-sudo apt install -y default-jdk
+sudo apt install -y openjdk-8-jdk
 ```
 Verify:
 ```bash
-java -version
-javac -version
+java -version    # should show 1.8.x
+javac -version   # should show 1.8.x
 ```
 
 ## How to Run

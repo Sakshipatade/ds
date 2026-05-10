@@ -1,21 +1,19 @@
 # Practical 3 – Square of a Number (RMI)
 
-Multi-threaded RMI client/server to compute the square of a given number.
+Simple RMI client/server to compute the square of a given number.
 
 ## Files
 - `SquareInterface.java` – Remote interface
 - `SquareServer.java` – Server implementation
-- `SquareClient.java` – Multi-threaded client
+- `SquareClient.java` – Client
 
-## Prerequisites – Install Java JDK
-
-Java RMI is part of the standard JDK – no extra packages needed. Any JDK 8+ works.
+## Prerequisites – Install JDK 8 (Java 1.8)
 
 ```bash
 sudo apt update
-sudo apt install -y default-jdk
+sudo apt install -y openjdk-8-jdk
 ```
-Verify with `java -version` and `javac -version`.
+Verify with `java -version` and `javac -version` (should show 1.8.x).
 
 ## How to Run
 
@@ -36,16 +34,12 @@ Wait for: `Square Server is ready...`
 ```bash
 java SquareClient
 ```
-Enter 3 numbers when prompted.
+Enter a number when prompted.
 
 ## Sample Output
 ```
-Enter number 1: 5
-Enter number 2: 7
-Enter number 3: 12
+Enter a number: 7
 Square of 7.0 = 49.0
-Square of 5.0 = 25.0
-Square of 12.0 = 144.0
 ```
 
 Stop the server with `Ctrl + C`.

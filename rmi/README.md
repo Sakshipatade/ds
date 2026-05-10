@@ -1,6 +1,6 @@
 # Distributed Systems – Java RMI Practicals
 
-Multi-threaded client/server programs using Java RMI.
+Simple client/server programs using Java RMI.
 
 ## Folder Structure
 
@@ -20,22 +20,29 @@ rmi/
 Each folder contains 3 files:
 - `XxxInterface.java`  – Remote interface
 - `XxxServer.java`     – Server implementation
-- `XxxClient.java`     – Multi-threaded client
+- `XxxClient.java`     – Client
 
 ---
 
-## Prerequisites – Install Java JDK
+## Prerequisites – Install JDK 8 (Java 1.8)
 
-Java RMI ships inside the standard JDK – no extra libraries to install. Any JDK 8 or higher works.
+All programs in this repository are written for **Java 8 (JDK 1.8)**.
 
 ```bash
 sudo apt update
-sudo apt install -y default-jdk
+sudo apt install -y openjdk-8-jdk
 ```
+
+If multiple JDKs are installed, switch the active one to JDK 8:
+```bash
+sudo update-alternatives --config java
+sudo update-alternatives --config javac
+```
+
 Verify:
 ```bash
-java -version
-javac -version
+java -version    # should show 1.8.x
+javac -version   # should show 1.8.x
 ```
 
 ---
@@ -48,7 +55,7 @@ Open **two terminals** and `cd` into the practical folder, e.g.:
 cd 01_cube
 ```
 
-### Step 1 – Compile (in both terminals or once)
+### Step 1 – Compile
 ```bash
 javac *.java
 ```
@@ -63,7 +70,7 @@ You should see: `Cube Server is ready...`
 ```bash
 java CubeClient
 ```
-Then enter the inputs when prompted.
+Then enter the input when prompted.
 
 > Replace `CubeServer` / `CubeClient` with the matching class name for the practical you are running (e.g. `SqrtServer`, `AddClient`, `PalinServer`, etc.).
 
@@ -88,7 +95,6 @@ Then enter the inputs when prompted.
 ## Notes
 
 - The server starts an RMI registry on port **1099** automatically (no need to run `rmiregistry` separately).
-- The client launches **3 threads**, each making a separate RMI call to the server – this demonstrates the multi-threaded behavior.
-- RMI servers are inherently multi-threaded: each incoming client request is handled on its own thread.
+- RMI servers are inherently multi-threaded: each incoming client request is handled on its own thread, so multiple clients can run at the same time.
 - Stop the server with `Ctrl + C` after testing.
 - If you get `Address already in use`, either wait a few seconds or kill the previous Java process.

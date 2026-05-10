@@ -2,38 +2,26 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
+// Client: looks up the server and calls div() remotely.
 public class DivClient {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        Registry registry = LocateRegistry.getRegistry("localhost", 1099);
+        DivInterface stub = (DivInterface) registry.lookup("DivService");
+
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter first number: ");
+        double a = sc.nextDouble();
+        System.out.print("Enter second number: ");
+        double b = sc.nextDouble();
+
         try {
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-            DivInterface stub = (DivInterface) registry.lookup("DivService");
-
-            Scanner sc = new Scanner(System.in);
-            double[][] pairs = new double[3][2];
-            for (int i = 0; i < 3; i++) {
-                System.out.print("Enter pair " + (i + 1) + " (a b): ");
-                pairs[i][0] = sc.nextDouble();
-                pairs[i][1] = sc.nextDouble();
-            }
-
-            Thread[] threads = new Thread[3];
-            for (int i = 0; i < 3; i++) {
-                final double a = pairs[i][0], b = pairs[i][1];
-                threads[i] = new Thread(() -> {
-                    try {
-                        double result = stub.div(a, b);
-                        System.out.println(a + " / " + b + " = " + result);
-                    } catch (Exception e) {
-                        System.out.println("Error: " + e.getMessage());
-                    }
-                });
-                threads[i].start();
-            }
-            for (Thread t : threads) t.join();
-            sc.close();
+            double result = stub.div(a, b);
+            System.out.println(a + " / " + b + " = " + result);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error: " + e.getMessage());
         }
+
+        sc.close();
     }
 }

@@ -1,21 +1,19 @@
 # Practical 7 – Division of Two Numbers (RMI)
 
-Multi-threaded RMI client/server to divide two given numbers. Throws a `RemoteException` if the divisor is zero.
+Simple RMI client/server to divide two given numbers. Throws a `RemoteException` if the divisor is zero.
 
 ## Files
 - `DivInterface.java` – Remote interface
 - `DivServer.java` – Server implementation
-- `DivClient.java` – Multi-threaded client
+- `DivClient.java` – Client
 
-## Prerequisites – Install Java JDK
-
-Java RMI is part of the standard JDK – no extra packages needed. Any JDK 8+ works.
+## Prerequisites – Install JDK 8 (Java 1.8)
 
 ```bash
 sudo apt update
-sudo apt install -y default-jdk
+sudo apt install -y openjdk-8-jdk
 ```
-Verify with `java -version` and `javac -version`.
+Verify with `java -version` and `javac -version` (should show 1.8.x).
 
 ## How to Run
 
@@ -36,17 +34,20 @@ Wait for: `Division Server is ready...`
 ```bash
 java DivClient
 ```
-Enter 3 pairs of numbers (`a b`) on separate prompts.
+Enter two numbers when prompted.
 
 ## Sample Output
 ```
-Enter pair 1 (a b): 100 4
-Enter pair 2 (a b): 81 9
-Enter pair 3 (a b): 50 0
-81.0 / 9.0 = 9.0
+Enter first number: 100
+Enter second number: 4
 100.0 / 4.0 = 25.0
-Error: RemoteException occurred in server thread; nested exception is:
-       java.rmi.RemoteException: Cannot divide by zero
+```
+
+If you enter `0` as the divisor:
+```
+Enter first number: 50
+Enter second number: 0
+Error: Cannot divide by zero
 ```
 
 Stop the server with `Ctrl + C`.

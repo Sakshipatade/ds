@@ -1,27 +1,25 @@
 # Practical 1 – Cube of a Number (RMI)
 
-Multi-threaded RMI client/server to compute the cube of a given number.
+Simple RMI client/server to compute the cube of a given number.
 
 ## Files
 - `CubeInterface.java` – Remote interface
 - `CubeServer.java` – Server implementation
-- `CubeClient.java` – Multi-threaded client
+- `CubeClient.java` – Client
 
-## Prerequisites – Install Java JDK
-
-Java RMI is part of the standard JDK – no extra packages needed. Any JDK 8+ works.
+## Prerequisites – Install JDK 8 (Java 1.8)
 
 ```bash
 sudo apt update
-sudo apt install -y default-jdk
+sudo apt install -y openjdk-8-jdk
 ```
-Verify with `java -version` and `javac -version`.
+Verify with `java -version` and `javac -version` (should show 1.8.x).
 
 ## How to Run
 
 Open **two terminals** and `cd` into this folder.
 
-### Step 1 – Compile (any terminal)
+### Step 1 – Compile
 ```bash
 javac *.java
 ```
@@ -36,17 +34,12 @@ Wait until you see: `Cube Server is ready...`
 ```bash
 java CubeClient
 ```
-Enter 3 numbers when prompted.
+Enter a number when prompted.
 
 ## Sample Output
 ```
-Enter number 1: 2
-Enter number 2: 3
-Enter number 3: 4
-Cube of 3.0 = 27.0
-Cube of 4.0 = 64.0
-Cube of 2.0 = 8.0
+Enter a number: 5
+Cube of 5.0 = 125.0
 ```
-The order may vary because each call runs on its own thread.
 
 Stop the server with `Ctrl + C`.

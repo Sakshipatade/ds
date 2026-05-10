@@ -1,21 +1,19 @@
 # Practical 8 – String Palindrome Check (RMI)
 
-Multi-threaded RMI client/server to check if a given string is a palindrome.
+Simple RMI client/server to check if a given string is a palindrome.
 
 ## Files
 - `PalinInterface.java` – Remote interface
 - `PalinServer.java` – Server implementation
-- `PalinClient.java` – Multi-threaded client
+- `PalinClient.java` – Client
 
-## Prerequisites – Install Java JDK
-
-Java RMI is part of the standard JDK – no extra packages needed. Any JDK 8+ works.
+## Prerequisites – Install JDK 8 (Java 1.8)
 
 ```bash
 sudo apt update
-sudo apt install -y default-jdk
+sudo apt install -y openjdk-8-jdk
 ```
-Verify with `java -version` and `javac -version`.
+Verify with `java -version` and `javac -version` (should show 1.8.x).
 
 ## How to Run
 
@@ -36,15 +34,15 @@ Wait for: `Palindrome Server is ready...`
 ```bash
 java PalinClient
 ```
-Enter 3 strings when prompted.
+Enter a string when prompted.
 
 ## Sample Output
 ```
-Enter string 1: madam
-Enter string 2: hello
-Enter string 3: racecar
+Enter a string: madam
 "madam" is a palindrome
-"racecar" is a palindrome
+```
+```
+Enter a string: hello
 "hello" is NOT a palindrome
 ```
 

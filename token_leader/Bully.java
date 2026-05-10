@@ -1,11 +1,19 @@
-import java.util.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
+// Bully Algorithm for Leader Election (simulation).
+// When a process detects the coordinator has crashed, it starts an ELECTION
+// by messaging all processes with HIGHER IDs. If none reply, it becomes the
+// new coordinator. Otherwise, the highest-ID process that responds takes over.
 public class Bully {
 
     static int n;
     static boolean[] alive;
     static int coordinator = -1;
 
+    // The election is started by `initiator`. It sends ELECTION to all
+    // higher-ID alive processes. If at least one responds (OK), they each
+    // start their own election. The highest-ID alive process eventually wins.
     static void election(int initiator) {
         System.out.println("\nP" + initiator + " starts an ELECTION");
 
@@ -18,26 +26,33 @@ public class Bully {
             }
         }
 
+        // No higher process answered: this process becomes the coordinator.
         if (!higherResponded) {
             coordinator = initiator;
             System.out.println("\nP" + initiator + " has no higher process responding.");
             System.out.println("P" + initiator + " declares ITSELF as the new COORDINATOR.");
             for (int i = 0; i < n; i++) {
-                if (i != initiator && alive[i])
+                if (i != initiator && alive[i]) {
                     System.out.println("  P" + initiator + " --COORDINATOR--> P" + i);
+                }
             }
             return;
         }
 
+        // Otherwise, let the next higher alive process run its own election.
         int next = -1;
         for (int i = initiator + 1; i < n; i++) {
-            if (alive[i]) { next = i; break; }
+            if (alive[i]) {
+                next = i;
+                break;
+            }
         }
         if (next != -1) election(next);
     }
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+
         System.out.print("Enter number of processes: ");
         n = sc.nextInt();
 
@@ -46,17 +61,23 @@ public class Bully {
 
         System.out.print("Enter how many processes are crashed, then their IDs: ");
         int k = sc.nextInt();
-        for (int i = 0; i < k; i++) alive[sc.nextInt()] = false;
+        for (int i = 0; i < k; i++) {
+            alive[sc.nextInt()] = false;
+        }
 
         System.out.print("Enter ID of process that detects coordinator failure: ");
         int detector = sc.nextInt();
 
         System.out.println("\n--- Bully Algorithm ---");
         System.out.print("Alive processes : ");
-        for (int i = 0; i < n; i++) if (alive[i]) System.out.print("P" + i + " ");
+        for (int i = 0; i < n; i++) {
+            if (alive[i]) System.out.print("P" + i + " ");
+        }
         System.out.println();
         System.out.print("Crashed processes: ");
-        for (int i = 0; i < n; i++) if (!alive[i]) System.out.print("P" + i + " ");
+        for (int i = 0; i < n; i++) {
+            if (!alive[i]) System.out.print("P" + i + " ");
+        }
         System.out.println();
 
         election(detector);

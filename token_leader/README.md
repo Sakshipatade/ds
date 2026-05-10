@@ -10,18 +10,18 @@ Three independent Java programs in this folder:
 
 Each one runs as a single Java program (no separate server/client) and prints step-by-step output of the algorithm.
 
-## Prerequisites – Install Java JDK
+## Prerequisites – Install JDK 8 (Java 1.8)
 
-Pure Java – uses only `java.util.Scanner`. No external libraries. Any JDK 8 or higher works.
+Pure Java – uses only `java.util.Scanner`. No external libraries.
 
 ```bash
 sudo apt update
-sudo apt install -y default-jdk
+sudo apt install -y openjdk-8-jdk
 ```
 Verify:
 ```bash
-java -version
-javac -version
+java -version    # should show 1.8.x
+javac -version   # should show 1.8.x
 ```
 
 ## How to Run

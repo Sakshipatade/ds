@@ -1,21 +1,19 @@
 # Practical 5 – Subtraction of Two Numbers (RMI)
 
-Multi-threaded RMI client/server to subtract two given numbers.
+Simple RMI client/server to subtract two given numbers.
 
 ## Files
 - `SubInterface.java` – Remote interface
 - `SubServer.java` – Server implementation
-- `SubClient.java` – Multi-threaded client
+- `SubClient.java` – Client
 
-## Prerequisites – Install Java JDK
-
-Java RMI is part of the standard JDK – no extra packages needed. Any JDK 8+ works.
+## Prerequisites – Install JDK 8 (Java 1.8)
 
 ```bash
 sudo apt update
-sudo apt install -y default-jdk
+sudo apt install -y openjdk-8-jdk
 ```
-Verify with `java -version` and `javac -version`.
+Verify with `java -version` and `javac -version` (should show 1.8.x).
 
 ## How to Run
 
@@ -36,16 +34,13 @@ Wait for: `Subtraction Server is ready...`
 ```bash
 java SubClient
 ```
-Enter 3 pairs of numbers (`a b`) on separate prompts.
+Enter two numbers when prompted.
 
 ## Sample Output
 ```
-Enter pair 1 (a b): 50 20
-Enter pair 2 (a b): 100 75
-Enter pair 3 (a b): 8 3
-100.0 - 75.0 = 25.0
+Enter first number: 50
+Enter second number: 20
 50.0 - 20.0 = 30.0
-8.0 - 3.0 = 5.0
 ```
 
 Stop the server with `Ctrl + C`.

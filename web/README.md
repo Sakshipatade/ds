@@ -14,18 +14,18 @@ The "service" runs as a stand-alone HTTP server on `http://localhost:8080`. The 
 
 ---
 
-## Prerequisites – Install Java JDK
+## Prerequisites – Install JDK 8 (Java 1.8)
 
-Uses only the JDK's built-in HTTP libraries (`com.sun.net.httpserver.HttpServer`, `java.net.HttpURLConnection`) – **no Tomcat, no Maven, no external libraries**. Requires JDK 11 or higher.
+Uses only the JDK's built-in HTTP libraries (`com.sun.net.httpserver.HttpServer`, `java.net.HttpURLConnection`) – **no Tomcat, no Maven, no external libraries**.
 
 ```bash
 sudo apt update
-sudo apt install -y default-jdk
+sudo apt install -y openjdk-8-jdk
 ```
 Verify:
 ```bash
-java -version       # 11 or higher
-javac -version
+java -version       # should show 1.8.x
+javac -version      # should show 1.8.x
 ```
 
 `curl` is used in the optional browser/curl test below. It is normally pre-installed; if not:
@@ -145,6 +145,6 @@ This proves the service is a real, language-independent web service – any HTTP
 ---
 
 ## Notes
-- Only Java standard library is used (`com.sun.net.httpserver.HttpServer`, `HttpURLConnection`). Works with any JDK 11+.
+- Only Java standard library is used (`com.sun.net.httpserver.HttpServer`, `HttpURLConnection`). Compatible with JDK 8.
 - The "user database" in Practical 23 lives in memory and is reset every time you restart the server.
 - Port `8080` must be free. If it is busy, change the port in `CalcServer.java` and in each client URL.

@@ -2,37 +2,25 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.Scanner;
 
+// Client: looks up the server in the registry and calls cube() remotely.
 public class CubeClient {
 
-    public static void main(String[] args) {
-        try {
-            Registry registry = LocateRegistry.getRegistry("localhost", 1099);
-            CubeInterface stub = (CubeInterface) registry.lookup("CubeService");
+    public static void main(String[] args) throws Exception {
+        // 1. Connect to the RMI registry on the server.
+        Registry registry = LocateRegistry.getRegistry("localhost", 1099);
 
-            Scanner sc = new Scanner(System.in);
-            double[] nums = new double[3];
-            for (int i = 0; i < 3; i++) {
-                System.out.print("Enter number " + (i + 1) + ": ");
-                nums[i] = sc.nextDouble();
-            }
+        // 2. Look up the remote object by its name.
+        CubeInterface stub = (CubeInterface) registry.lookup("CubeService");
 
-            Thread[] threads = new Thread[3];
-            for (int i = 0; i < 3; i++) {
-                final double n = nums[i];
-                threads[i] = new Thread(() -> {
-                    try {
-                        double result = stub.cube(n);
-                        System.out.println("Cube of " + n + " = " + result);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                });
-                threads[i].start();
-            }
-            for (Thread t : threads) t.join();
-            sc.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // 3. Read a number from the user.
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        double n = sc.nextDouble();
+
+        // 4. Call the remote method and print the result.
+        double result = stub.cube(n);
+        System.out.println("Cube of " + n + " = " + result);
+
+        sc.close();
     }
 }

@@ -1,21 +1,19 @@
 # Practical 9 – String Equality Check (RMI)
 
-Multi-threaded RMI client/server to check whether two given strings are equal.
+Simple RMI client/server to check whether two given strings are equal.
 
 ## Files
 - `EqualInterface.java` – Remote interface
 - `EqualServer.java` – Server implementation
-- `EqualClient.java` – Multi-threaded client
+- `EqualClient.java` – Client
 
-## Prerequisites – Install Java JDK
-
-Java RMI is part of the standard JDK – no extra packages needed. Any JDK 8+ works.
+## Prerequisites – Install JDK 8 (Java 1.8)
 
 ```bash
 sudo apt update
-sudo apt install -y default-jdk
+sudo apt install -y openjdk-8-jdk
 ```
-Verify with `java -version` and `javac -version`.
+Verify with `java -version` and `javac -version` (should show 1.8.x).
 
 ## How to Run
 
@@ -36,18 +34,17 @@ Wait for: `String Equal Server is ready...`
 ```bash
 java EqualClient
 ```
-Enter 3 pairs of strings (each pair takes two prompts).
+Enter two strings when prompted.
 
 ## Sample Output
 ```
-Enter pair 1 - first string: hello
-Enter pair 1 - second string: hello
-Enter pair 2 - first string: java
-Enter pair 2 - second string: Java
-Enter pair 3 - first string: openai
-Enter pair 3 - second string: claude
-"openai" and "claude" are NOT EQUAL
+Enter first string: hello
+Enter second string: hello
 "hello" and "hello" are EQUAL
+```
+```
+Enter first string: java
+Enter second string: Java
 "java" and "Java" are NOT EQUAL
 ```
 
