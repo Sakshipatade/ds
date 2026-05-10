@@ -15,9 +15,12 @@ https://www.msys2.org/
 download from it and installed .exe file 
 
 From Start menu open MSYS2 UCRT64 terminal::
+```
 pacman -S mingw-w64-ucrt-x86_64-gcc
+```
 then press y
-now check gcc is installed or not: gcc --version
+now check gcc is installed or not: 
+```gcc --version```
 
 Add GCC to PATH :Add this folder:->  C:\msys64\ucrt64\bin ->to Environment Variables → Path.
 now check gcc is installed or not: gcc --version
