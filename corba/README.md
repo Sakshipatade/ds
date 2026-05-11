@@ -26,6 +26,16 @@ java -version    # should show 1.8.x
 javac -version   # should show 1.8.x
 ```
 
+### Optional – On Windows
+
+After installing JDK 8 (e.g. from Adoptium or Oracle), set the path in `cmd` for the current session:
+```cmd
+set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_xxx
+set PATH=%JAVA_HOME%\bin;%PATH%
+```
+(Replace `jdk1.8.0_xxx` with the folder name actually installed on your machine.)
+Verify with `java -version`, `javac -version`, `where idlj`, `where orbd`.
+
 ---
 
 ## Folder Structure
@@ -121,4 +131,42 @@ java StringClient -ORBInitialPort 1050 -ORBInitialHost localhost
 - The naming service (`orbd`) acts as the Object Request Broker – it lets the client locate the remote object by name without knowing its physical location. This is the **object brokering** demonstration.
 - The IDL file defines a language-neutral interface; `idlj` generates Java bindings from it.
 - Stop `orbd` and the server with `Ctrl + C` after testing.
-- If you get a port conflict on 1050, choose any other free port (e.g. 1060) – just use it consistently across all 3 commands.
+
+---
+
+## Specifying the Port
+
+`orbd` accepts two port-related flags:
+
+| Flag                | Meaning                                                                 |
+|---------------------|-------------------------------------------------------------------------|
+| `-ORBInitialPort N` | Bootstrap / naming-service port that **clients and servers** connect to |
+| `-port N`           | Activation port used internally by `orbd` itself (optional)             |
+
+### Default usage (only the bootstrap port)
+```bash
+orbd -ORBInitialPort 1050 -ORBInitialHost localhost
+```
+Then start the server and client with the **same** `-ORBInitialPort 1050`:
+```bash
+java CalculatorServer -ORBInitialPort 1050 -ORBInitialHost localhost
+java CalculatorClient -ORBInitialPort 1050 -ORBInitialHost localhost
+```
+
+### Specify both ports
+```bash
+orbd -ORBInitialPort 1050 -ORBInitialHost localhost -port 1030
+```
+Here `1050` is the port the server / client talk to, and `1030` is the internal activation port.
+
+### If port 1050 is already in use
+Pick any other free port (e.g. `1060`, `2050`, `9000`) and use it consistently in all three commands:
+```bash
+orbd -ORBInitialPort 1060 -ORBInitialHost localhost
+java CalculatorServer -ORBInitialPort 1060 -ORBInitialHost localhost
+java CalculatorClient -ORBInitialPort 1060 -ORBInitialHost localhost
+```
+Check whether a port is free with:
+```bash
+ss -tlnp | grep :1050
+```

@@ -22,6 +22,16 @@ javac -version   # must show 1.8.x
 which idlj orbd
 ```
 
+### Optional – On Windows
+
+After installing JDK 8 (e.g. from Adoptium or Oracle), set the path in `cmd` for the current session:
+```cmd
+set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_xxx
+set PATH=%JAVA_HOME%\bin;%PATH%
+```
+(Replace `jdk1.8.0_xxx` with the folder name actually installed on your machine.)
+Verify with `java -version`, `javac -version`, `where idlj`, `where orbd`.
+
 ## Files
 - `Calculator.idl` – IDL interface definition
 - `CalculatorServer.java` – Server (with `CalculatorImpl` inside)
@@ -71,3 +81,23 @@ Division       : 5.0
 ```
 
 Stop `orbd` and the server with `Ctrl + C`.
+
+## Specifying the Port
+
+`orbd` understands two port flags:
+
+- `-ORBInitialPort N` – the bootstrap port that both server and client connect to (mandatory).
+- `-port N` – an extra internal activation port for `orbd` itself (optional).
+
+Example using both:
+```bash
+orbd -ORBInitialPort 1050 -ORBInitialHost localhost -port 1030
+```
+
+If `1050` is busy, pick any other free port and use the **same** number everywhere:
+```bash
+orbd               -ORBInitialPort 1060 -ORBInitialHost localhost
+java CalculatorServer -ORBInitialPort 1060 -ORBInitialHost localhost
+java CalculatorClient -ORBInitialPort 1060 -ORBInitialHost localhost
+```
+Check whether a port is in use with `ss -tlnp | grep :1050`.

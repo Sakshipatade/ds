@@ -45,6 +45,16 @@ java -version    # should show 1.8.x
 javac -version   # should show 1.8.x
 ```
 
+### Optional – On Windows
+
+After installing JDK 8 (e.g. from Adoptium or Oracle), set the path in `cmd` for the current session:
+```cmd
+set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_xxx
+set PATH=%JAVA_HOME%\bin;%PATH%
+```
+(Replace `jdk1.8.0_xxx` with the folder name actually installed on your machine.)
+Verify with `java -version` and `javac -version` (should show 1.8.x).
+
 ---
 
 ## How to Run (any practical)
